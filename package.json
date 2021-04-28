@@ -1,0 +1,24 @@
+{
+  "name": "cypress-lighthouse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "clean:reports": "rm -rf mochawesome-report/",
+    "test": "npm run clean:reports && npx cypress run --browser chrome",
+    "merge:report": "mochawesome-merge mochawesome-report/*.json > cypress-tests-report.json",  
+    "generate:report": "marge --reportDir TestReport cypress-tests-report.json",
+    "after:tests": "npm run merge:report && npm run generate:report",
+    "cypressReport": "npm run test && npm run after:tests"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cypress": "^7.1.0",
+    "cypress-audit": "^0.3.0",
+    "mocha": "^8.3.2",
+    "mochawesome": "^6.2.2",
+    "mochawesome-merge": "^4.2.0",
+    "mochawesome-report-generator": "^5.2.0"
+  }
+}
